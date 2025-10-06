@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Generar itinerario premium{% endblock %}
+{% block content %}
+<section class="form-intro">
+    <h2>Briefing del proyecto de viaje</h2>
+    <p>Adjunta documentos inspiracionales (presentaciones, itinerarios previos, fotos, PDF) y completa la información clave. El sistema sintetiza todo para elaborar un plan maestro en HTML y PDF listo para compartir con tu cliente.</p>
+</section>
+<form class="itinerary-form" action="{{ url_for('main.generate_itinerary') }}" method="post" enctype="multipart/form-data">
+    <div class="grid">
+        <label>
+            <span>Nombre del cliente</span>
+            <input type="text" name="client_name" placeholder="Ej. Sofía Ramírez" required />
+        </label>
+        <label>
+            <span>Destino principal</span>
+            <input type="text" name="primary_destination" placeholder="Ej. Marrakech, Marruecos" required />
+        </label>
+        <label>
+            <span>Fecha de inicio</span>
+            <input type="date" name="start_date" required />
+        </label>
+        <label>
+            <span>Fecha de fin</span>
+            <input type="date" name="end_date" required />
+        </label>
+        <label>
+            <span>Estilo de viaje</span>
+            <select name="travel_style">
+                <option value="Premium">Premium / Lujo</option>
+                <option value="Experiencial">Experiencial</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Corporativo">Corporativo</option>
+                <option value="Familia">Familia</option>
+            </select>
+        </label>
+        <label class="full-width">
+            <span>Indicaciones especiales</span>
+            <textarea name="special_requests" rows="3" placeholder="Dietas, celebraciones, requisitos corporativos, etc."></textarea>
+        </label>
+        <label class="full-width">
+            <span>Documentos y referencias</span>
+            <input type="file" name="attachments" accept=".pdf,.txt,.jpg,.jpeg,.png,.doc,.docx" multiple />
+            <small>Puedes subir múltiples archivos (PDF, imágenes, textos). Se extraerá la información disponible para enriquecer el briefing.</small>
+        </label>
+    </div>
+    <button type="submit" class="primary-button">Generar itinerario maestro</button>
+</form>
+<section class="how-it-works">
+    <h3>¿Qué recibirás?</h3>
+    <ul>
+        <li>Resumen ejecutivo del viaje y perfil del viajero.</li>
+        <li>Agenda día por día con narrativa editorial.</li>
+        <li>Recomendaciones gastronómicas, logísticas y de bienestar.</li>
+        <li>Registro de documentos cargados y observaciones.</li>
+        <li>Descarga inmediata en PDF con formato premium.</li>
+    </ul>
+</section>
+{% endblock %}
