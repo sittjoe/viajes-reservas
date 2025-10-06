@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block title %}Itinerario generado{% endblock %}
+{% block content %}
+<section class="summary">
+    <div class="summary-header">
+        <h2>Itinerario maestro para {{ itinerary.client.name }}</h2>
+        <a class="secondary-button" href="{{ url_for('main.download_itinerary_pdf', itinerary_id=itinerary_id) }}">Descargar en PDF</a>
+    </div>
+    <div class="summary-grid">
+        <div>
+            <h3>Datos clave</h3>
+            <ul>
+                <li><strong>Destino:</strong> {{ itinerary.trip.destination }}</li>
+                <li><strong>Fechas:</strong> {{ itinerary.trip.start_date }} - {{ itinerary.trip.end_date }}</li>
+                <li><strong>Noches:</strong> {{ itinerary.trip.nights }}</li>
+                <li><strong>Estilo:</strong> {{ itinerary.client.style }}</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Notas especiales</h3>
+            <p>{{ itinerary.client.special_requests or 'Sin observaciones adicionales.' }}</p>
+        </div>
+    </div>
+</section>
+<section class="agenda">
+    <h3>Agenda día por día</h3>
+    {% for day in itinerary.days %}
+    <article class="day-card">
+        <header>
+            <h4>{{ day.title }}</h4>
+            <span class="date">{{ day.date }}</span>
+        </header>
+        <p class="summary">{{ day.summary }}</p>
+        <div class="slots">
+            <div>
+                <h5>Mañana</h5>
+                <p>{{ day.morning }}</p>
+            </div>
+            <div>
+                <h5>Tarde</h5>
+                <p>{{ day.afternoon }}</p>
+            </div>
+            <div>
+                <h5>Noche</h5>
+                <p>{{ day.evening }}</p>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+<section class="recommendations">
+    <h3>Recomendaciones estratégicas</h3>
+    <div class="recommendation-grid">
+        {% for section, items in itinerary.recommendations.items() %}
+        <div class="recommendation-block">
+            <h4>{{ section.capitalize() }}</h4>
+            <ul>
+                {% for item in items %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section class="attachments">
+    <h3>Documentos recibidos</h3>
+    {% if itinerary.attachments %}
+    <table>
+        <thead>
+            <tr>
+                <th>Archivo</th>
+                <th>Tipo</th>
+                <th>Notas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attachment in itinerary.attachments %}
+            <tr>
+                <td>{{ attachment.filename }}</td>
+                <td>{{ attachment.content_type }}</td>
+                <td>{{ attachment.notes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No se adjuntaron documentos.</p>
+    {% endif %}
+</section>
+{% endblock %}

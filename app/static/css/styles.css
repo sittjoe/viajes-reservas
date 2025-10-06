@@ -1,0 +1,245 @@
+:root {
+    --primary: #2b6777;
+    --secondary: #c8d8e4;
+    --accent: #f2a154;
+    --background: #f9fbfc;
+    --text: #1c1e21;
+    --radius: 14px;
+    --shadow: 0 24px 60px rgba(16, 30, 54, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    width: min(1080px, 92%);
+    margin: 0 auto;
+}
+
+.app-header {
+    background: linear-gradient(120deg, var(--primary), #0e3a4a);
+    color: white;
+    padding: 48px 0 36px;
+    text-align: center;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 2.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.app-header .subtitle {
+    margin-top: 8px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.app-footer {
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(28, 30, 33, 0.6);
+}
+
+.form-intro, .agenda, .summary, .recommendations, .attachments, .how-it-works {
+    background: white;
+    padding: 32px;
+    margin: 32px 0;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.form-intro h2 {
+    margin-top: 0;
+    font-size: 1.9rem;
+}
+
+.itinerary-form {
+    background: white;
+    padding: 32px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.itinerary-form .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.itinerary-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.itinerary-form input,
+.itinerary-form select,
+.itinerary-form textarea {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d9e2ec;
+    font-size: 0.95rem;
+    font-family: inherit;
+}
+
+.itinerary-form input:focus,
+.itinerary-form select:focus,
+.itinerary-form textarea:focus {
+    outline: 2px solid var(--primary);
+    border-color: transparent;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 12px 24px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-button {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 16px 40px rgba(242, 161, 84, 0.3);
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 12px 32px rgba(43, 103, 119, 0.35);
+}
+
+.summary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.summary li {
+    margin-bottom: 8px;
+}
+
+.agenda .day-card {
+    border: 1px solid #e3edf5;
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+}
+
+.day-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.day-card .date {
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: rgba(28, 30, 33, 0.65);
+}
+
+.day-card .slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.recommendation-block {
+    background: #f4f9fb;
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid #d8e9f1;
+}
+
+.recommendation-block ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.attachments table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.attachments th,
+.attachments td {
+    border: 1px solid #d9e2ec;
+    padding: 12px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.flash-wrapper {
+    margin: 20px 0;
+}
+
+.flash {
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.flash-error {
+    background: #ffe2e2;
+    color: #d64b4b;
+}
+
+.error {
+    text-align: center;
+    padding: 80px 0;
+}
+
+@media (max-width: 640px) {
+    .summary-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
